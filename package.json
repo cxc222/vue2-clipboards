@@ -1,7 +1,7 @@
 {
   "name": "vue2-clipboards",
-  "version": "1.0.1",
-  "main": "./src/index.js",
+  "version": "1.0.2",
+  "main": "./src/vue2-clipboards.js",
   "description": "Vue2.0 directive to copy or cut text to clipboard.",
   "author": "cxc222 <cxc359170248@vip.qq.com>",
   "repository": {

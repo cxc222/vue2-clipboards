@@ -9,7 +9,7 @@
         throw new Error('[vue-clipboards] cannot locate Clipboard.');
     }
 
-    let clipboards;
+    var clipboards;
 
     Vue.directive('clipboard', {
       bind: function (container, binding, vnode) {

@@ -20,55 +20,68 @@ function clear(_path) {
 clear('./build/')
 
 
-var config = {}
+var config = {
+	entry: {
+		main: "./src/vue2-clipboards.js"
+	},
+	output: {
+		path: "./build",
+		filename: "vue2-clipboards.js",
+		libraryTarget: 'umd',
+        umdNamedDefine: true
+	},
+	externals: {
+        vue: {
+            root: 'Vue',
+            commonjs: 'vue',
+            commonjs2: 'vue',
+            amd: 'vue'
+        }
+    },
+	resolve: {
+        extensions: ['', '.js', '.vue']
+    },
+	module: {
+		loaders: [{
+			test: /\.vue$/,
+			loader: 'vue'
+		}, {
+			test: /\.js$/,
+			loader: 'babel',
+			exclude: /node_modules/
+		}, {
+			test: /\.(png|jpg|gif|ttf|eot|svg|woff|mp4)$/,
+			loader: "file"
+		}]
+	},
+	plugins: [
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: '"production"'
+			}
+		}),
+		// new webpack.optimize.CommonsChunkPlugin({
+		// 	name: "common",
+		// 	filename: "[name].[hash:3].js"
+		// }),
+		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+			sourceMap: false,
+			mangle: true,
+			compress: {
+				warnings: false
+			}
+		})
+	]
+}
 // config.entry = {
 // 	app: "./src/vue2-clipboards.js",
 // 	common: [
-// 		'vue',
-// 		'js'
+// 		'vue'
 // 	]
 // }
-config.entry = {
-	build : "./src/vue2-clipboards.js"
-};
 // config.externals = {
+// 	vue: "vue",
 // 	clipboard: "clipboard"
 // }
-config.output = {
-	path: "./build",
-	filename: "vue2-clipboards.js"
-}
-config.module = {
-	loaders: [{
-		test: /\.vue$/,
-		loader: 'vue'
-	}, {
-		test: /\.js$/,
-		loader: 'babel',
-		exclude: /node_modules/
-	}, {
-		test: /\.(png|jpg|gif|ttf|eot|svg|woff|mp4)$/,
-		loader: "file"
-	}]
-}
-
-config.plugins = [
-	new webpack.DefinePlugin({
-		'process.env': {
-			NODE_ENV: '"production"'
-		}
-	}),
-	// new webpack.optimize.CommonsChunkPlugin({
-	// 	name: "common",
-	// 	filename: "[name].[hash:3].js"
-	// }),
-	new webpack.optimize.OccurenceOrderPlugin(),
-	new webpack.optimize.UglifyJsPlugin({
-		sourceMap: false,
-		mangle: true,
-		compress: {
-			warnings: false
-		}
-	})
-]
 module.exports = config

@@ -1,6 +1,6 @@
 {
   "name": "vue2-clipboards",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "./build/vue2-clipboards.js",
   "description": "Vue2.0 directive to copy or cut text to clipboard.",
   "author": "cxc222 <cxc359170248@vip.qq.com>",
@@ -12,10 +12,10 @@
     "build": "webpack --progress --hide-modules --config build.js"
   },
   "dependencies": {
+    "vue": "^2.1.0",
     "clipboard": "^1.5.16"
   },
   "devDependencies": {
-    "vue": "^2.1.0",
     "autoprefixer": "^6.4.0",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",

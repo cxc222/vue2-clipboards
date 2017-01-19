@@ -21,15 +21,22 @@ clear('./build/')
 
 
 var config = {}
+// config.entry = {
+// 	app: "./src/vue2-clipboards.js",
+// 	common: [
+// 		'vue',
+// 		'js'
+// 	]
+// }
 config.entry = {
-	app: "./src/index.js",
-	common: [
-		'vue'
-	]
-}
+	build : "./src/vue2-clipboards.js"
+};
+// config.externals = {
+// 	clipboard: "clipboard"
+// }
 config.output = {
 	path: "./build",
-	filename: "clipboards.[hash:3].js"
+	filename: "vue2-clipboards.js"
 }
 config.module = {
 	loaders: [{
@@ -51,10 +58,10 @@ config.plugins = [
 			NODE_ENV: '"production"'
 		}
 	}),
-	new webpack.optimize.CommonsChunkPlugin({
-		name: "common",
-		filename: "[name].[hash:3].js"
-	}),
+	// new webpack.optimize.CommonsChunkPlugin({
+	// 	name: "common",
+	// 	filename: "[name].[hash:3].js"
+	// }),
 	new webpack.optimize.OccurenceOrderPlugin(),
 	new webpack.optimize.UglifyJsPlugin({
 		sourceMap: false,
